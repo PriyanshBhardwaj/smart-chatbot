@@ -6,11 +6,20 @@ import llm_helper
 
 
 st.set_page_config(
-        page_title="Smart Chatbot",
+        page_title="OMNIQUERI",
         page_icon="🤖",
         initial_sidebar_state = "auto",
         # layout="wide"
     )
+
+#Removing the Menu Button and Streamlit Icon
+hide_default_format = """
+    <style>
+    #MainMenu {visibility: hidden; }
+    footer {visibility: hidden;}
+    </style>
+    """
+st.markdown(hide_default_format, unsafe_allow_html=True)
 
 
 #### sidebar
@@ -22,8 +31,9 @@ with st.sidebar.expander("**Tech Stack**"):
             ''')
 
 with st.sidebar.expander("**App Working**"):
+    st.write("**OMNIQUERI -** Online Multifaceted Network for Intelligent Querying, Exploration, and Retrieval Integration")
     st.write('''
-            **Smart Chatbot : Answers all your queries!!**
+            **A smart chatbot which answers all your queries!!**
             ''')
     
     st.write('''
@@ -50,7 +60,8 @@ col1, col2 = st.columns([5, 1])
 col2.write("")
 
 #title
-col1.title("Smart Chatbot")
+col1.title("**OMNIQUERI**")
+# col1.write("Online Multifaceted Network for Intelligent Querying, Exploration, and Retrieval Integration")
 
 #llm/agent selector
 selection = col2.selectbox(label="Select method",
