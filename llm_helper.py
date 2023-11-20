@@ -1,6 +1,7 @@
 from langchain.prompts import PromptTemplate
 # from langchain.llms import HuggingFaceHub
 from langchain.llms import GooglePalm
+# from langchain.llms import Palm2
 from langchain.chains import LLMChain
 
 from langchain.chains import ConversationChain
@@ -26,7 +27,7 @@ import re
 
 
 # hfHub_api_key = os.getenv("HUGGINGFACEHUB_API_TOKEN")         #commented because im not using any model from huggingface 
-google_api_key = os.getenv("GOOGLE_API_KEY")
+google_key = os.getenv("GOOGLE_API_KEY")
 google_cse_id = os.getenv("GOOGLE_CSE_ID")
 google_palm_key = os.getenv("PALM_API_KEY")
 
@@ -54,8 +55,11 @@ google_palm_key = os.getenv("PALM_API_KEY")
 
 #google palm
 palm_llm = GooglePalm(google_api_key=google_palm_key, temperature=0.7)
+# palm2_llm = Palm2(google_api_key=google_palm_key, temperature=0.7)
 
-##google palm is working best so using it
+#GooglePalm() class is a wrapper for the LaMDA language model. it uses LaMDA language model for response generation.
+
+##google palm(LaMDA) is working best so using it
 
 
 
@@ -120,8 +124,13 @@ def llm_query_response(query: str):
         result =  response
     
     except Exception as e:
-        print(f'\nproblem occured in llm_query_response: {str(e)}\n')
-        result =  "Please accept our apology as something went wrong with the server. Please wait for a while or use Agents mode."
+        # print(f'\nproblem occured in Default mode in function llm_query_response: {str(e)}\n')
+        if str(e) == "list index out of range":
+            # print("working")
+            result = "I didn't understand your question. Please type it correctly."
+        else:
+            # print("not working")
+            result =  "Please accept our apology as something went wrong with the server. Please wait for a while or use Agents mode. If the problem persists please reload the page."
     
     return result
 
@@ -135,9 +144,14 @@ def llm_with_memory(query: str):
     try:
         result = convo.run(query)
     except Exception as e:
-        print(f'\nproblem occured in llm_with_memory: {str(e)}\n')
-        result =  "Please accept our apology as something went wrong with the server. Please wait for a while or use Agents mode."
-
+        # print(f'\nproblem occured in Default mode in function llm_with_memory: {str(e)}\n')
+        if str(e) == "list index out of range":
+            # print("working")
+            result = "I didn't understand your question. Please type it correctly."
+        else:
+            # print("not working")
+            result =  "Please accept our apology as something went wrong with the server. Please wait for a while or use Agents mode. If the problem persists please reload the page."
+    
     return result
 
 
@@ -149,8 +163,13 @@ def query_response_with_agents(query: str):
     try:
         result = agent.run(query)
     except Exception as e:
-        print(f'\nproblem occured in query_response_with_agents: {str(e)}\n')
-        result =  "Please accept our apology as something went wrong with the server. Please wait for a while or use Default mode."
+        # print(f'\nproblem occured in Agents mode in function query_response_with_agents: {str(e)}\n')
+        if str(e) == "list index out of range":
+            # print("working")
+            result = "I didn't understand your question. Please type it correctly."
+        else:
+            # print("not working")
+            result =  "Please accept our apology as something went wrong with the server. Please wait for a while or use Default mode. If the problem persists please reload the page."
     
     return result
 

@@ -25,12 +25,14 @@ st.markdown(hide_default_format, unsafe_allow_html=True)
 #### sidebar
 with st.sidebar.expander("**Tech Stack**"):
     st.write('''
-            - **LLM : Google Palm**
+            - **LLMs : Google Palm2, Google LaMDA**
             - **Agents : Google Search, Wikipedia, etc.**
+            - **Google developer APIs**
             - **Langchain**
+            - **Python**
             ''')
 
-with st.sidebar.expander("**App Working**"):
+with st.sidebar.expander("**About App & its Working**"):
     st.write("**OMNIQUERI -** Online Multifaceted Network for Intelligent Querying, Exploration, and Retrieval Integration")
     st.write('''
             **A smart chatbot which answers all your queries!!**
@@ -39,7 +41,7 @@ with st.sidebar.expander("**App Working**"):
     st.write('''
             - **Dual Modes for Varied Experiences:** Choose between "Default" and "Agents" modes for varied experiences.
             - **Default Mode:**
-                - **Operates Internet-Independently:** Relies on LLM Google Palm AI for imaginative responses without requiring an internet connection.
+                - **Operates Internet-Independently:** Relies on LLMs Google Palm2 AI and Google LaMDA model for imaginative responses without requiring an internet connection.
             - **Agents Mode:**
                 - **Real-Time Updates:** Integrates external tools like Google Search, Wikipedia, etc., via Langchain's agents, overcoming internet dependency for up-to-date information.
                 - **Tackles Connectivity Issues:** Ensures functionality even in low-connectivity or offline scenarios, a feature not commonly found in other advanced chatbots.
@@ -73,10 +75,10 @@ selection = col2.selectbox(label="Select method",
                             )
 
 
-selector = {"Default": "**Default mode is used to generate creative results for all sort of queries from writing code to writing a poem, giving scientific explanations to giving life lessons by using only the Google Palm.\
+selector = {"Default": "**Default mode is used to generate creative results for all sort of queries from writing code to writing a poem, giving scientific explanations to giving life lessons by using only LLMs: Google Palm2 and Google LaMDA.\
                          To access real time data and to get answers of recent happenings use Agents mode.**",
 
-            "Agents": "**Agents mode uses Google Palm and different tools like google search, wikipedia, etc. to answer your queries related to real time data and recent happenings.\
+            "Agents": "**Agents mode uses LLMs and different tools like google search, wikipedia, etc. to answer your queries related to real time data and recent happenings.\
                          To boost your creativity while generating responses use Default mode.**"}
 
 st.write(selector[selection])
@@ -136,3 +138,4 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
     
     # print("\n\nMessages:\n", st.session_state.messages, "\n\n")
+    # print(len(st.session_state.messages))
